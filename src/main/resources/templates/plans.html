@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Список плана</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="section-title">
+            <br>
+            <h2 th:align="center">Мои планы</h2>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-md-9" th:align="right">
+                            <a class="btn btn-default" th:href="@{'/plan/new'}" role="button">Новый план</a>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-default" th:href="@{'/plan/pdf'}" role="button">Выгрузить список в PDF-file</a>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover ">
+                                    <tbody>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Название</th>
+                                        <td><a href="#">Просмотреть</a></td>
+                                        <td><a href="#">Обновить</a></td>
+                                        <td><a href="#">Удалить</a></td>
+                                    </tr>
+                                    <tr th:each="plan : ${plans}">
+                                        <td th:text="${plan.id}">1</td>
+                                        <td th:text="${plan.name}">IU</td>
+                                        <td><a href="#"
+                                               th:href="@{'/plan/' + ${plan.id}}">Просмотреть</a>
+                                        </td>
+                                        <td><a href="#"
+                                               th:href="@{'/plan/' + ${plan.id} + '/update'}">Обновить</a>
+                                        </td>
+                                        <td><a href="#"
+                                               th:href="@{'/plan/' + ${plan.id} + '/delete'}">Удалить</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
